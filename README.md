@@ -16,7 +16,7 @@ Create a production build with `npm run build`.
 **The photographs in this starter are sample Unsplash images, not Sweekar's own work.** Replace them with your photographs before presenting the site as a professional portfolio.
 
 1. Add your exported photographs under `public/photos/`.
-2. In `src/main.jsx`, update the `photographs` array to use local paths, for example `/photos/western-ghats-road.jpg`.
+2. In `src/main.jsx`, update the `photos` array to use local paths, for example `/photos/western-ghats-road.jpg`.
 3. Replace the large hero image and the About image with your own work.
 4. Change `YOUR_EMAIL@example.com` to your real professional email address.
 5. Update the Instagram link to your profile.
