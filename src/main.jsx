@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, Camera, Instagram, Menu, X } from 'lucide-react'
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, Camera, Menu, X } from 'lucide-react'
 import './styles.css'
 
 const photos = [
@@ -93,7 +93,7 @@ function App() {
         <div className="contact-top"><p className="eyebrow"><span className="eyebrow-dot"/> HAVE A PLACE IN MIND?</p><span>LET’S MAKE SOMETHING THAT LASTS.</span></div>
         <h2>Send me <em>somewhere.</em></h2><p className="contact-copy">A destination to tell, a road to document, or a project that needs a fresh perspective. Let’s start there.</p>
         <a className="contact-email" href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com <ArrowUpRight size={20}/></a>
-        <div className="contact-bottom"><span>KARNATAKA, INDIA · OPEN TO TRAVEL</span><a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><Instagram size={16}/> INSTAGRAM <ArrowUpRight size={13}/></a></div>
+        <div className="contact-bottom"><span>KARNATAKA, INDIA · OPEN TO TRAVEL</span><a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><span className="instagram-mark" aria-hidden="true">IG</span> INSTAGRAM <ArrowUpRight size={13}/></a></div>
       </section>
       <footer className="footer"><a className="wordmark" href="#top">SM<span>®</span></a><span>MADE SLOWLY, SEEN OUT THERE.</span><a href="#top">BACK TO TOP ↑</a><span>© {new Date().getFullYear()} SWEEKAR M.</span></footer>
       {active && <div className="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer" onClick={() => setActive(null)}>
