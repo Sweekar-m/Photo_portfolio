@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, Camera, Instagram, Menu, X } from 'lucide-react'
 import './styles.css'
 
-const photographs = [
+const photos = [
   { id: 1, title: 'Where the road disappears', place: 'Western Ghats, India', category: 'Roads', ratio: 'tall', src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=85' },
   { id: 2, title: 'The quiet in between', place: 'Mountain country', category: 'Landscapes', ratio: 'wide', src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85' },
   { id: 3, title: 'Last light, long ride', place: 'Open road', category: 'Roads', ratio: 'square', src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85' },
@@ -18,14 +18,14 @@ function App() {
   const [active, setActive] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showNote, setShowNote] = useState(true)
-  const visiblePhotos = useMemo(() => filter === 'All frames' ? photographs : photographs.filter((photo) => photo.category === filter), [filter])
+  const visiblePhotos = useMemo(() => filter === 'All frames' ? photos : photos.filter((photo) => photo.category === filter), [filter])
 
   useEffect(() => {
     if (!active) return
     const onKeyDown = (event) => {
       if (event.key === 'Escape') setActive(null)
-      if (event.key === 'ArrowRight') setActive((current) => current ? photographs[(photographs.findIndex((photo) => photo.id === current.id) + 1) % photographs.length] : current)
-      if (event.key === 'ArrowLeft') setActive((current) => current ? photographs[(photographs.findIndex((photo) => photo.id === current.id) - 1 + photographs.length) % photographs.length] : current)
+      if (event.key === 'ArrowRight') setActive((current) => current ? photos[(photos.findIndex((photo) => photo.id === current.id) + 1) % photos.length] : current)
+      if (event.key === 'ArrowLeft') setActive((current) => current ? photos[(photos.findIndex((photo) => photo.id === current.id) - 1 + photos.length) % photos.length] : current)
     }
     document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKeyDown)
@@ -34,13 +34,13 @@ function App() {
 
   const stepPhoto = (direction) => {
     if (!active) return
-    const currentIndex = photographs.findIndex((photo) => photo.id === active.id)
-    setActive(photographs[(currentIndex + direction + photographs.length) % photographs.length])
+    const currentIndex = photos.findIndex((photo) => photo.id === active.id)
+    setActive(photos[(currentIndex + direction + photos.length) % photos.length])
   }
 
   return (
     <main>
-      {showNote && <div className="demo-note"><span>Portfolio preview</span><p>Sample photographs are placeholders — replace them with your own work before sharing with clients.</p><button aria-label="Dismiss preview note" onClick={() => setShowNote(false)}><X size={15}/></button></div>}
+      {showNote && <div className="demo-note"><span>Portfolio preview</span><p>Sample photos are placeholders — replace them with your own work before sharing with clients.</p><button aria-label="Dismiss preview note" onClick={() => setShowNote(false)}><X size={15}/></button></div>}
       <header className="topbar">
         <a className="wordmark" href="#top" aria-label="Sweekar home">SM<span>®</span></a>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
@@ -62,7 +62,7 @@ function App() {
       </section>
       <section className="work-section section-shell" id="work">
         <div className="section-heading"><div><p className="eyebrow">A FEW THINGS I’VE SEEN</p><h2>Selected <em>frames.</em></h2></div><p className="section-intro">A visual journal of the places, roads and fleeting moments worth pausing for.</p></div>
-        <div className="gallery-toolbar"><div className="gallery-count"><span>0{visiblePhotos.length}</span> FRAMES IN VIEW</div><div className="filter-list" role="group" aria-label="Filter photographs">{categories.map((category) => <button key={category} className={filter === category ? 'filter active' : 'filter'} onClick={() => setFilter(category)}>{category}</button>)}</div></div>
+        <div className="gallery-toolbar"><div className="gallery-count"><span>0{visiblePhotos.length}</span> FRAMES IN VIEW</div><div className="filter-list" role="group" aria-label="Filter photos">{categories.map((category) => <button key={category} className={filter === category ? 'filter active' : 'filter'} onClick={() => setFilter(category)}>{category}</button>)}</div></div>
         <div className="photo-grid">
           {visiblePhotos.map((photo, index) => <button className={'photo-card ' + photo.ratio + ' card-' + index} key={photo.id} onClick={() => setActive(photo)} aria-label={'Open photograph: ' + photo.title}>
             <div className="photo-image-wrap"><img src={photo.src} alt={photo.title} loading="lazy"/><span className="photo-open"><ArrowUpRight size={19}/></span><span className="photo-number">{String(photo.id).padStart(2, '0')}</span></div>
@@ -101,7 +101,7 @@ function App() {
         <button className="lightbox-arrow left" aria-label="Previous photograph" onClick={(event) => {event.stopPropagation(); stepPhoto(-1)}}><ArrowLeft/></button>
         <div className="lightbox-content" onClick={(event) => event.stopPropagation()}>
           <img src={active.src.replace(/w=\d+/, 'w=1800')} alt={active.title}/>
-          <div className="lightbox-caption"><div><p>{active.place} / {active.category}</p><h3>{active.title}</h3></div><span>{String(photographs.findIndex((photo) => photo.id === active.id) + 1).padStart(2, '0')} / {String(photographs.length).padStart(2, '0')}</span></div>
+          <div className="lightbox-caption"><div><p>{active.place} / {active.category}</p><h3>{active.title}</h3></div><span>{String(photos.findIndex((photo) => photo.id === active.id) + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}</span></div>
         </div>
         <button className="lightbox-arrow right" aria-label="Next photograph" onClick={(event) => {event.stopPropagation(); stepPhoto(1)}}><ArrowRight/></button>
       </div>}
